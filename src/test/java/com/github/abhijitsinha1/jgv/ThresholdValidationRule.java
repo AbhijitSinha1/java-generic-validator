@@ -1,27 +1,5 @@
-# java-generic-validator
-A general purpose validator that can be used by other projects
+package com.github.abhijitsinha1.jgv;
 
-Example Usage: **Threshold Validation**
-```java
-public class Threshold {
-	private final Double value;
-
-	private Threshold(Double value) {
-		this.value = value;
-	}
-
-	public Double getValue() {
-		return value;
-	}
-
-	public static Threshold of(Double value) {
-		Validator.isNotNull(value);
-		Validator.isGreaterThan(value, 0.0);
-		return new Threshold(value);
-	}
-}
-```
-```java
 public class ThresholdValidationRule implements ValidationRule<Threshold> {
 
 	private final double value;
@@ -49,9 +27,3 @@ public class ThresholdValidationRule implements ValidationRule<Threshold> {
 	}
 
 }
-```
-```java
-ValidationRule<Threshold> rule = ThresholdValidationRule.of(.75);
-boolean result1 = rule.isValid(Threshold.of(.32));
-boolean result2 = rule.isValid(Threshold.of(.77));
-```

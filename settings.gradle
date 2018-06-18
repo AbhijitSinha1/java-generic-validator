@@ -1,0 +1,3 @@
+rootProject.name = 'java-generic-validator'
+include ':java-random-generator'
+project(':java-random-generator').projectDir = new File('../java-random-generator');
