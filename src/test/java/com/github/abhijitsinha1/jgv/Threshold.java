@@ -17,4 +17,9 @@ public class Threshold {
 		Validator.isLesserThanEqual(value, 1.0);
 		return new Threshold(value);
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("[THRESHOLD:: %s]", getValue());
+	}
 }

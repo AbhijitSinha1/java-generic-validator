@@ -17,10 +17,12 @@ public class ValidationTest {
 		ValidationRule<Threshold> rule1 = ThresholdValidationRule.of(.75);
 		ValidationRule<Employee> rule2 = EmployeeValidationRule
 		    .of(Arrays.asList(new String[] { "EMP_001", "EMP_004", "EMP_010", "EMP_011" }));
-		
-		List<Threshold> list = RandomGenerator.numbers(Double.class).setMaxlimit(1.0).setMinlimit(0.0).setSize(100).build(t -> {
-			return Threshold.of(t);
-		});
+
+		List<Threshold> list = RandomGenerator.numbers(Double.class)
+		    .setMaxlimit(1.0)
+		    .setMinlimit(0.0)
+		    .setSize(100)
+		    .build(Threshold::of);
 
 		boolean result1 = rule1.isValid(Threshold.of(.32));
 		boolean result2 = rule1.isValid(Threshold.of(.77));
@@ -31,8 +33,9 @@ public class ValidationTest {
 		System.out.println("2:: " + result2);
 		System.out.println("3:: " + result3);
 		System.out.println("4:: " + result4);
-		
-		list.stream().filter(t -> rule1.isValid(t)).collect(Collectors.toList());
+		System.out.println("L:: " + list.stream()
+		    .filter(t -> rule1.isValid(t))
+		    .collect(Collectors.toList()));
 	}
 
 }
